@@ -26,6 +26,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   fluttie: ^0.3.0
   auto_size_text: ^2.1.0
+  provider: ^3.2.0
+
 
 
 dev_dependencies:

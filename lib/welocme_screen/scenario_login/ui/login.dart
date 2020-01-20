@@ -1,4 +1,5 @@
 import 'package:dr_booking_flu/welocme_screen/widgets/animation_widget.dart';
+import 'package:dr_booking_flu/welocme_screen/widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -31,6 +32,21 @@ class login_state extends State<login> {
                 ),
               ),
               animation_widget(MediaQuery.of(context).size.height * 3 / 10),
+              Container(
+                height: MediaQuery.of(context).size.height * 3/10,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(right: 40.0,left: 40.0),
+                      child: text_field_widget('Email Address',Icons.email),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 40.0,left: 40.0,top: 10.0),
+                      child: text_field_widget('Password',Icons.lock),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
