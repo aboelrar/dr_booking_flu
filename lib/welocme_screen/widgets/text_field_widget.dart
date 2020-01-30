@@ -9,11 +9,12 @@ import 'package:provider/provider.dart';
 
 class text_field_widget extends StatelessWidget {
   String hint;
-   var prefixIcon, suffixIcon;
+  var prefixIcon, suffixIcon;
 
-  text_field_widget(String hint, var prefixIcon) {
+  text_field_widget(String hint, var prefixIcon,var suffixIcon) {
     this.hint = hint;
     this.prefixIcon = prefixIcon;
+    this.suffixIcon=suffixIcon;
   }
 
   @override
@@ -24,12 +25,7 @@ class text_field_widget extends StatelessWidget {
 
     return TextFormField(
       onFieldSubmitted: (term) {
-        // process
-        textInput.set_icon(Icons.delete);
-        if(prefixIcon==Icons.email)
-          {
-            suffixIcon=textInput.icon;
-          }
+        text_field_submit(term,textInput);
       },
 
       style: TextStyle(
@@ -38,15 +34,38 @@ class text_field_widget extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon),
         suffixIcon: Icon(
-          textInput.icon,
+          suffixIcon,
           color: Colors.blue,
         ),
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-          color: Colors.grey,
-        )),
+              color: Colors.grey,
+            )),
         hintText: hint,
       ),
     );
+  }
+
+
+  //NUM THAT USE TO COMARE WHEN WILL DO YES
+  static int num=0;
+
+  //METHOD TO DO YES AFTER SUCCESS THING
+  void text_field_submit(String term,var textInput)
+  {
+    // process
+    if(term.isEmpty)
+    {
+      return null;
+    }
+    else if(num==0)
+    {
+      textInput.set_icon(Icons.done);
+      num=1;
+    }
+    else if(num==1)
+    {
+      textInput.set_sup_icon(Icons.done);
+    }
   }
 }

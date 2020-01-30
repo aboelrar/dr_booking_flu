@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class text_input extends ChangeNotifier{
-  var _icon ;
+  var _icon,_supicon ;
 
 
 
@@ -16,5 +16,17 @@ class text_input extends ChangeNotifier{
   {
     this.icon = icon;
     notifyListeners();
+  }
+
+  set_sup_icon(var icon)
+  {
+    this.supicon = icon;
+    notifyListeners();
+  }
+
+  get supicon => _supicon;
+
+  set supicon(value) {
+    _supicon = value;
   }
 }

@@ -3,9 +3,11 @@ import 'package:fluttie/fluttie.dart';
 
 class animation_widget extends StatelessWidget {
   var height;
+  var animate_link;
 
-  animation_widget(var height) {
+  animation_widget(var height,var animate_link) {
     this.height = height;
+    this.animate_link = animate_link;
   }
 
   @override
@@ -19,7 +21,7 @@ class animation_widget extends StatelessWidget {
   void animation_img() async {
     var instance = Fluttie();
     var emojiComposition = await instance.loadAnimationFromAsset(
-      "animations/welcome.json",
+      animate_link,
     );
     emojiAnimation = await instance.prepareAnimation(emojiComposition);
     emojiAnimation.start();

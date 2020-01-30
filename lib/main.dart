@@ -1,8 +1,10 @@
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,7 +14,16 @@ class MyApp extends StatelessWidget {
      return ChangeNotifierProvider<text_input>.value(
       value: text_input(),
       child: MaterialApp(
-        home: login(),
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: [
+            Locale("ar"),
+          ],
+          locale: Locale("ar"),
+        home: welcome_tour(),
       ),
     );
   }
