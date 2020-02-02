@@ -1,4 +1,5 @@
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/animation_widget.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/text_field_widget.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/welcome_button.dart';
@@ -112,10 +113,21 @@ class login_state extends State<login> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 5.0),
-                            child: AutoSizeText(
-                              "تسجيل حساب",
-                              style: TextStyle(
-                                  fontSize: 15.0, color: Colors.black),
+                            child: GestureDetector(
+                              onTap: ()
+                              {
+                                Navigator.push(context, MaterialPageRoute(
+                                    builder: (context)
+                                    {
+                                      return sign_up();
+                                    }
+                                ));
+                              },
+                              child: AutoSizeText(
+                                "تسجيل حساب",
+                                style: TextStyle(
+                                    fontSize: 15.0, color: Colors.black),
+                              ),
                             ),
                           ),
                         ],

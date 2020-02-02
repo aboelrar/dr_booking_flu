@@ -5,6 +5,8 @@ import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_t
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'doctors_pages/scenario_search/search.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
             Locale("ar"),
           ],
           locale: Locale("ar"),
-        home: welcome_tour(),
+        home: search(),
       ),
     );
   }

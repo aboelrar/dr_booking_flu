@@ -1,3 +1,5 @@
+import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
+import 'package:dr_booking_flu/welocme_screen/widgets/successful_login_dilaog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -24,7 +26,13 @@ class welcome_button extends StatelessWidget{
         borderRadius: BorderRadius.circular(25.0)
       ),
       onPressed: () {
-        /*...*/
+        //successful_login_dilog().show_dialog(context);
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context)
+            {
+              return welcome_tour();
+            }
+        ));
       },
       child: Text(
         btn_name,

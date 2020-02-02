@@ -2,18 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:fluttie/fluttie.dart';
 
 class animation_widget extends StatelessWidget {
-  var height;
+  var height,width;
   var animate_link;
 
-  animation_widget(var height,var animate_link) {
+  animation_widget(var height,var animate_link,var width) {
     this.height = height;
     this.animate_link = animate_link;
+    this.width = width;
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return animate(context, height);
+    return animate(context, height, width);
   }
 
   static var emojiAnimation;
@@ -27,11 +28,11 @@ class animation_widget extends StatelessWidget {
     emojiAnimation.start();
   }
 
-  Widget animate(BuildContext context, var height) {
+  Widget animate(BuildContext context, var height ,var width) {
     animation_img();
     return FluttieAnimation(
       emojiAnimation,
-      size: Size(MediaQuery.of(context).size.width * 3/4, height),
+      size: Size(width , height),
     );
   }
 }
