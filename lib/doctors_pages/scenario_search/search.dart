@@ -13,6 +13,7 @@ class search extends StatelessWidget {
         body: ListView(
       children: <Widget>[
         Container(
+          height: MediaQuery.of(context).size.height - ,
           color: Colors.white,
           child: Column(
             children: <Widget>[

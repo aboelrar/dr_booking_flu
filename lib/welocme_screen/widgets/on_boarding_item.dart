@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/doctors_pages/scenario_search/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,12 +53,23 @@ class on_boarding_item extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 textDirection: TextDirection.ltr,
                 children: <Widget>[
-                  AutoSizeText(
-                    "تخطى",
-                    style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 20.0,
-                        fontFamily: 'thesansbold'),
+                  GestureDetector(
+                    onTap: ()
+                    {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context)
+                          {
+                            return search();
+                          }
+                      ));
+                    },
+                    child: AutoSizeText(
+                      "تخطى",
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 20.0,
+                          fontFamily: 'thesansbold'),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left:3.0),

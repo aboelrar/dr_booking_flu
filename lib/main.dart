@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             Locale("ar"),
           ],
           locale: Locale("ar"),
-        home: sign_up(),
+        home: login(),
       ),
     );
   }
