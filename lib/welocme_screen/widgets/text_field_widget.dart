@@ -10,11 +10,13 @@ import 'package:provider/provider.dart';
 class text_field_widget extends StatelessWidget {
   String hint;
   var prefixIcon, suffixIcon;
+  TextEditingController controller;
 
-  text_field_widget(String hint, var prefixIcon,var suffixIcon) {
+  text_field_widget(String hint, var prefixIcon,var suffixIcon,TextEditingController controller) {
     this.hint = hint;
     this.prefixIcon = prefixIcon;
-    this.suffixIcon=suffixIcon;
+    this.suffixIcon = suffixIcon;
+    this.controller = controller;
   }
 
   @override
@@ -24,6 +26,7 @@ class text_field_widget extends StatelessWidget {
     final text_input textInput = Provider.of<text_input>(context);
 
     return TextFormField(
+      controller: controller ,
       onFieldSubmitted: (term) {
         text_field_submit(term,textInput);
       },

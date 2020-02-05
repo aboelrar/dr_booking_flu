@@ -21,6 +21,13 @@ class login extends StatefulWidget {
 }
 
 class login_state extends State<login> {
+
+  var key = GlobalKey <FormState>();
+
+  //SOMETHING LIKE ID USING TO GET TEXT FROM FIELD
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -32,6 +39,7 @@ class login_state extends State<login> {
         child: ListView(
           children: <Widget>[
             Form(
+              key: key,
               child: Column(
                 children: <Widget>[
                   Container(
@@ -62,13 +70,13 @@ class login_state extends State<login> {
                       children: <Widget>[
                         Expanded(
                           child: text_field_widget(
-                              'البريد الالكترونى', Icons.email, textInput.icon),
+                              'البريد الالكترونى', Icons.email, textInput.icon,emailController),
                           flex: 1,
                         ),
                         Expanded(
                           child: Center(
                               child: text_field_widget(
-                                  'كلمة السر', Icons.lock, textInput.supicon)),
+                                  'كلمة السر', Icons.lock, textInput.supicon,passController)),
                           flex: 2,
                         ),
                         Expanded(
@@ -88,7 +96,7 @@ class login_state extends State<login> {
                           flex: 1,
                         ),
                         Expanded(
-                          child: welcome_button("تسجيل دخول"),
+                          child: welcome_button("تسجيل دخول",emailController.text,passController.text,null,null,1),
                           flex: 1,
                         ),
                       ],

@@ -27,9 +27,15 @@ dependencies:
   fluttie: ^0.5.0
   auto_size_text: ^2.1.0
   provider: ^3.2.0
+  cuberto_bottom_bar: ^1.0.0
+  circular_bottom_navigation: ^1.0.1
   page_indicator: ^0.3.0
+  material_design_icons_flutter: ^3.4.4895
+  http: ^0.12.0+2
+  progress_dialog: ^1.2.0
   flutter_localizations:
     sdk: flutter
+
 
 
 dev_dependencies:
@@ -62,6 +68,8 @@ flutter:
     - images/book_doc.png
     - images/selectdoc.png
     - images/choose_doc.png
+    - images/patient.png
+    - images/choose.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

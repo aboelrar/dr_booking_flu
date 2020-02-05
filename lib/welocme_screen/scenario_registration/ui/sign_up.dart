@@ -5,6 +5,14 @@ import 'package:dr_booking_flu/welocme_screen/widgets/welcome_button.dart';
 import 'package:flutter/material.dart';
 
 class sign_up extends StatelessWidget{
+
+  GlobalKey<FormState> _key = GlobalKey();
+
+  TextEditingController username = new TextEditingController();
+  TextEditingController password = new TextEditingController();
+  TextEditingController phone = new TextEditingController();
+  TextEditingController email = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -13,6 +21,7 @@ class sign_up extends StatelessWidget{
         child: ListView(
           children: <Widget>[
            Form(
+             key: _key,
             child: Column(
               children: <Widget>[
                 Padding(
@@ -31,22 +40,22 @@ class sign_up extends StatelessWidget{
                   margin: EdgeInsets.only(top: 30.0,left: 50.0,right: 50.0),
                   child: Column(
                     children: <Widget>[
-                      text_field_widget("الاسم",Icons.person,null),
+                      text_field_widget("الاسم",Icons.person,null,username),
                       Padding(
                         padding: const EdgeInsets.only(top:10.0),
-                        child: text_field_widget("كلمة السر",Icons.lock,null),
+                        child: text_field_widget("كلمة السر",Icons.lock,null,password),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top:10.0),
-                        child: text_field_widget("رقم الهاتف",Icons.phone,null),
+                        child: text_field_widget("رقم الهاتف",Icons.phone,null,phone),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top:10.0),
-                        child: text_field_widget("البريد الالكترونى",Icons.email,null),
+                        child: text_field_widget("البريد الالكترونى",Icons.email,null,email),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top:25.0),
-                        child: welcome_button("تسجيل"),
+                        child: welcome_button("تسجيل",username.text,password.text,email.text,phone.text,2),
                       ),
                     ],
                   ),

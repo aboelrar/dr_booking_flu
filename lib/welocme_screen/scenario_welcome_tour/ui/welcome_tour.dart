@@ -36,27 +36,27 @@ class welcome_tour extends StatelessWidget {
       body: Stack(
         children: <Widget>[
         Container(
+          height: MediaQuery.of(context).size.height,
           color: Colors.white,
           child: Column(
             children: <Widget>[
-              Container(
-                height: MediaQuery.of(context).size.height * 9.5 / 10,
+              Expanded(
                 child: PageIndicatorContainer(
-                  child: PageView.builder(
-                    itemCount: arraylist.length,
-                    itemBuilder: (context, index) {
-                      return on_boarding_item(arraylist[index].page_name,
-                          arraylist[index].image, arraylist[index].descripition);
-                    },
+                    child: PageView.builder(
+                      itemCount: arraylist.length,
+                      itemBuilder: (context, index) {
+                        return on_boarding_item(arraylist[index].page_name,
+                            arraylist[index].image, arraylist[index].descripition);
+                      },
+                    ),
+                    align: IndicatorAlign.bottom,
+                    length: 3,
+                    indicatorSpace: 20.0,
+                    padding: const EdgeInsets.all(20),
+                    indicatorColor: Colors.grey,
+                    indicatorSelectorColor: Theme.of(context).primaryColor,
+                    shape: IndicatorShape.circle(size: 12),
                   ),
-                  align: IndicatorAlign.bottom,
-                  length: 3,
-                  indicatorSpace: 20.0,
-                  padding: const EdgeInsets.all(10),
-                  indicatorColor: Colors.grey,
-                  indicatorSelectorColor: Theme.of(context).primaryColor,
-                  shape: IndicatorShape.circle(size: 12),
-                ),
               ),
               
             ],
