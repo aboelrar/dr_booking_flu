@@ -15,7 +15,6 @@ class login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    SystemChrome.setEnabledSystemUIOverlays([]);
     return login_state();
   }
 }

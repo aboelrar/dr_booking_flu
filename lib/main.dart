@@ -3,6 +3,7 @@ import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -13,9 +14,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
      return ChangeNotifierProvider<text_input>.value(
       value: text_input(),
       child: MaterialApp(
+
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,

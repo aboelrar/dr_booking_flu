@@ -10,9 +10,9 @@ class Api_Call {
 
 
   //LOGIN
-   Future<dynamic> login(Map map)async
+   Future<dynamic> login(String username,String password)async
   {
-    return await _Api_Router.Perform_Request_post(Apiclient.login, map);
+    return await _Api_Router.Perform_Request('${Apiclient.login}/${username}/${password}');
   }
 
 //SIGN_UP
@@ -21,5 +21,10 @@ class Api_Call {
     return await _Api_Router.Perform_Request_post(Apiclient.sign_up, map);
   }
 
+  //GET_DOCTOR_LIST
+  Future<dynamic> get_all_docs()async
+  {
+    return await _Api_Router.Perform_Request(Apiclient.get_all_doctors);
+  }
 
 }

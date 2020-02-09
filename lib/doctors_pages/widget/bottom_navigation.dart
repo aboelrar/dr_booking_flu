@@ -41,6 +41,7 @@ class bottom_navigation extends StatelessWidget {
       tabItems,
       controller: _navigationController,
       barHeight: 50.0,
+      barBackgroundColor: Colors.white,
       selectedCallback: (int selectedPos) {
         bottom_nav(selectedPos);
       },

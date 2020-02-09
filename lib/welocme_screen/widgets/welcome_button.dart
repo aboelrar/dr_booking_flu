@@ -47,7 +47,7 @@ class welcome_button extends StatelessWidget {
   void response(BuildContext context)
   {
     if (flag == 1) {
-      Api_Call().login({"mail": username, "password": password}).then((value)
+      Api_Call().login(username,password).then((value)
           {
            //ACTIONS HERE
             if(value['status']== 1)

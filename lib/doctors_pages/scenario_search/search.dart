@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/app_widget/skip.dart';
+import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/widget/bottom_navigation.dart';
+import 'package:dr_booking_flu/doctors_pages/widget/search_button.dart';
 import 'package:dr_booking_flu/doctors_pages/widget/search_text_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,23 +13,27 @@ class search extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        body: ListView(
-      children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height - ,
+      backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+        child: Container(
           color: Colors.white,
           child: Column(
             children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(right: 20.0),
+                height: MediaQuery.of(context).size.height * 1.5/10,
+                child: skip(doctor_list(),MainAxisAlignment.end),
+              ),
               Center(
                 child: Image.asset(
                   "images/choose.png",
                   width: MediaQuery.of(context).size.width * 3 / 3,
-                  height: MediaQuery.of(context).size.height * 4 / 10,
+                  height: MediaQuery.of(context).size.height * 3 / 10,
                 ),
               ),
               Container(
                 alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height * 2 / 10,
+                height: MediaQuery.of(context).size.height * 1.5 / 10,
                 child: AutoSizeText(
                   "ابحث الان عن الطبيب المناسب ",
                   style: TextStyle(
@@ -39,7 +46,6 @@ class search extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 1 / 10,
                 child: search_text_field(),
               ),
-
               Container(
                 height: MediaQuery.of(context).size.height * 1 / 10,
                 child: Padding(
@@ -52,12 +58,14 @@ class search extends StatelessWidget {
                           fontFamily: 'thesansbold')),
                 ),
               ),
+              Container(
+                  height: MediaQuery.of(context).size.height * .5/10,
+                  child: search_button()),
             ],
           ),
         ),
-      ],
     ),
-        bottomNavigationBar : bottom_navigation(),
+        bottomNavigationBar : SizedBox(height :MediaQuery.of(context).size.height * 1.3/10, child: bottom_navigation()),
     );
   }
 }
