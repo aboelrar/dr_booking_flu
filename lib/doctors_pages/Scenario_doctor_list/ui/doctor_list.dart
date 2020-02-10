@@ -22,18 +22,25 @@ class doctor_list extends StatelessWidget{
                //GET ALL DATA
                all_docsRootClass rootClass = all_docsRootClass.fromJSON(snapshot.data);
                all_docsDoctor doctors;
+               List<all_docsDoctor> all_docs = List<all_docsDoctor>();
+
+
                for(int index=0; index<rootClass.doctors.length ;index++)
                  {
                    doctors  = all_docsDoctor.fromJSON(rootClass.doctors[index]);
+                   all_docs.add(doctors);
                  }
-               print('aaaaaaaa${doctors.address}');
-               return  ListView.builder( itemBuilder: (BuildContext context, index)
-               {return Padding(
-                   padding: const EdgeInsets.only(top:40.0),
-                   child: doctor_item('sss'),
-                 );
-               }
-               ,itemCount: 8,
+
+               return  Padding(
+                 padding: const EdgeInsets.only(bottom:20.0),
+                 child: ListView.builder( itemBuilder: (BuildContext context, index)
+                 {return Padding(
+                     padding: const EdgeInsets.only(top:20.0),
+                     child: doctor_item(all_docs[index].name,all_docs[index].description,all_docs[index].address,all_docs[index].price,all_docs[index].image),
+                   );
+                 }
+                 ,itemCount: rootClass.doctors.length,
+                 ),
                );
              }
           }

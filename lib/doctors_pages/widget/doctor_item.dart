@@ -5,9 +5,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class doctor_item extends StatelessWidget {
 
-  String doc_name;
+  String doc_name,doc_desc,doc_address,doc_price,doc_img;
 
-  doctor_item(this.doc_name);
+
+  doctor_item(this.doc_name, this.doc_desc, this.doc_address, this.doc_price ,this.doc_img);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class doctor_item extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRxm6IYuV69PF3j3fXIR0wcdRpzM4l3K1GMmE_m1wKJSS8jjW6d",
+                          doc_img,
                           width: MediaQuery.of(context).size.width * 2.5 / 10,
                           height: MediaQuery.of(context).size.height * 1.3 / 10,
                           fit: BoxFit.cover,
@@ -82,21 +83,23 @@ class doctor_item extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         AutoSizeText(
-                          'دكتور محمد القفل',
+                          doc_name,
+                          maxLines: 1,
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 14.0,
                               fontFamily: 'thesansbold'),
                         ),
                         AutoSizeText(
-                          "استشارى جراحة تجميل",
+                          doc_desc,
+                          maxLines: 1,
                           style: TextStyle(
                               color: Colors.grey,
                               fontSize: 12.0,
                               fontFamily: 'thesansbold'),
                         ),
                         AutoSizeText(
-                          "طريق الملك عبدالعزيز الرياض السعوديه",
+                          doc_address,
                           maxLines: 1,
                           style: TextStyle(
                               color: Colors.grey,
@@ -149,7 +152,7 @@ class doctor_item extends StatelessWidget {
                           size: 18,
                         ),
                         AutoSizeText(
-                          "300 ريال",
+                          "${doc_price} ريال",
                           maxLines: 1,
                           style: TextStyle(
                               color: Colors.grey,
