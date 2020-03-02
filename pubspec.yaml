@@ -71,6 +71,13 @@ flutter:
     - images/choose_doc.png
     - images/patient.png
     - images/choose.png
+    - images/person.png
+    - images/link.png
+    - images/gender.png
+    - images/nxt_page.png
+    - images/calendar.png
+    - images/favourites.png
+    - images/hear.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

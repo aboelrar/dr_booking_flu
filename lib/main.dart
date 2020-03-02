@@ -7,7 +7,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'doctors_pages/scenario_search/search.dart';
+import 'doctors_pages/Scenario_doctor_list/model/doctor_list_provider.dart';
+import 'doctors_pages/scenario_search/model/bottom_nav.dart';
+import 'doctors_pages/scenario_search/ui/search.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,19 +18,32 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-     return ChangeNotifierProvider<text_input>.value(
-      value: text_input(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<text_input>.value(
+          value: text_input(),
+        ),
+        ChangeNotifierProvider<doctor_list_provider>.value(
+          value: doctor_list_provider(),
+        ),
+        ChangeNotifierProvider<bottom_nav_provider>.value(
+          value: bottom_nav_provider(),
+        ),
+      ],
       child: MaterialApp(
-
+    theme: ThemeData(
+    // Define the default brightness and colors.
+    primaryColor: const Color(0xff706fd3),
+    ),
         debugShowCheckedModeBanner: false,
         localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          supportedLocales: [
-            Locale("ar"),
-          ],
-          locale: Locale("ar"),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale("ar"),
+        ],
+        locale: Locale("ar"),
         home: login(),
       ),
     );

@@ -4,24 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class doctor_item extends StatelessWidget {
+  String doc_name, doc_desc, doc_address, doc_price, doc_img;
+  int fav_flag;
+  var fav_color;
 
-  String doc_name,doc_desc,doc_address,doc_price,doc_img;
-
-
-  doctor_item(this.doc_name, this.doc_desc, this.doc_address, this.doc_price ,this.doc_img);
+  doctor_item(this.doc_name, this.doc_desc, this.doc_address, this.doc_price,
+      this.doc_img, this.fav_flag);
 
   @override
   Widget build(BuildContext context) {
+    //SET ICON FAV COLOR
+    if (fav_flag == 0) {
+      fav_color = Colors.red;
+    } else {
+      fav_color = Colors.black;
+    }
+
+    check_item_if_null(); //CHECK IF DESCRIPIRON OR ADDRESS IS NULL
+
     // TODO: implement build
     return Card(
-
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       margin: EdgeInsets.only(right: 20.0, left: 20.0),
-      elevation: 10.0,
       child: Container(
         padding: EdgeInsets.all(5.0),
         height: MediaQuery.of(context).size.height * 2.2 / 10,
         width: MediaQuery.of(context).size.width,
-        color: Colors.white,
         child: Column(
           children: <Widget>[
             Container(
@@ -35,14 +45,14 @@ class doctor_item extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.network(
                           doc_img,
-                          width: MediaQuery.of(context).size.width * 2.5 / 10,
+                          width: MediaQuery.of(context).size.width * 2.6 / 10,
                           height: MediaQuery.of(context).size.height * 1.3 / 10,
                           fit: BoxFit.cover,
                         ),
                       ),
                       Positioned(
                         top: MediaQuery.of(context).size.height * .9 / 10,
-                        width: MediaQuery.of(context).size.width * 2.5 / 10,
+                        width: MediaQuery.of(context).size.width * 2.6 / 10,
                         height: MediaQuery.of(context).size.height * .4 / 10,
                         child: Container(
                           decoration: new BoxDecoration(
@@ -54,7 +64,7 @@ class doctor_item extends StatelessWidget {
                             child: (RatingBar(
                               initialRating: 5,
                               minRating: 1,
-                              itemSize: 17.0,
+                              itemSize: 15.0,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
                               itemCount: 5,
@@ -62,7 +72,7 @@ class doctor_item extends StatelessWidget {
                                   EdgeInsets.symmetric(horizontal: 1.0),
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
-                                color: Colors.amber,
+                                color: Colors.orange,
                               ),
                               onRatingUpdate: (rating) {
                                 print(rating);
@@ -76,7 +86,7 @@ class doctor_item extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
                     height: MediaQuery.of(context).size.height * 1.3 / 10,
-                    width: MediaQuery.of(context).size.width * 5.5 / 10,
+                    width: MediaQuery.of(context).size.width * 5.2 / 10,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       textDirection: TextDirection.rtl,
@@ -120,7 +130,7 @@ class doctor_item extends StatelessWidget {
                     child: Icon(
                       Icons.favorite,
                       size: 15.0,
-                      color: Colors.red,
+                      color: fav_color,
                     ),
                   ),
                 ],
@@ -135,13 +145,12 @@ class doctor_item extends StatelessWidget {
               color: const Color(0xff1A000000),
             ),
             Container(
-              padding: EdgeInsets.only(right: 10.0,left: 10.0),
+              padding: EdgeInsets.only(right: 10.0, left: 10.0),
               width: MediaQuery.of(context).size.width,
               child: Row(
                 children: <Widget>[
-
                   Container(
-                    width: MediaQuery.of(context).size.width * .9/ 2,
+                    width: MediaQuery.of(context).size.width * .9 / 2,
                     height: MediaQuery.of(context).size.height * .5 / 10,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -192,5 +201,23 @@ class doctor_item extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  //CHECK ITEM IF NULL OR NOT
+  void check_item_if_null()
+  {
+    if(doc_desc==null)
+      {
+        doc_desc = 'لايوجد وصف'; //IF DESCRIPITION IS NULL
+      }
+    if(doc_address == null)
+      {
+        doc_address = 'لايوجد عنوان';  //IF   ADDRESS IS NULL
+      }
+    if(doc_name == null)
+      {
+        doc_name = 'لايوجد اسم';  //IF NAME IS NULL
+
+      }
   }
 }

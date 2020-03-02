@@ -8,21 +8,34 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class search extends StatelessWidget {
+// ignore: camel_case_types
+class search extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return search_state();
+  }
+}
+
+var key = GlobalKey<FormState>();
+TextEditingController searchController = new TextEditingController();
+
+class search_state extends State<search> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Container(
           color: Colors.white,
           child: Column(
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(right: 20.0),
-                height: MediaQuery.of(context).size.height * 1.5/10,
-                child: skip(doctor_list(),MainAxisAlignment.end),
+                height: MediaQuery.of(context).size.height * 1.5 / 10,
+                child: skip(doctor_list(null, 0), MainAxisAlignment.end),
               ),
               Center(
                 child: Image.asset(
@@ -44,7 +57,8 @@ class search extends StatelessWidget {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 1 / 10,
-                child: search_text_field(),
+                child:
+                    Form(key: key, child: search_text_field(searchController)),
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 1 / 10,
@@ -59,13 +73,15 @@ class search extends StatelessWidget {
                 ),
               ),
               Container(
-                  height: MediaQuery.of(context).size.height * .5/10,
-                  child: search_button()),
+                  height: MediaQuery.of(context).size.height * .5 / 10,
+                  child: search_button(searchController.text)),
             ],
           ),
         ),
-    ),
-        bottomNavigationBar : SizedBox(height :MediaQuery.of(context).size.height * 1.3/10, child: bottom_navigation()),
+      ),
+      bottomNavigationBar: SizedBox(
+          height: MediaQuery.of(context).size.height * 1.3 / 10,
+          child: bottom_navigation()),
     );
   }
 }

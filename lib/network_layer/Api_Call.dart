@@ -27,4 +27,30 @@ class Api_Call {
     return await _Api_Router.Perform_Request(Apiclient.get_all_doctors);
   }
 
+  //GET_DOCTOR_LIST_USING_SEARCH
+  Future<dynamic> get_all_docs_search(String search_name,String search_filter)async
+  {
+    print('${Apiclient.get_search_doctors}/${search_name}/${search_filter}/1');
+    return await _Api_Router.Perform_Request('${Apiclient.get_search_doctors}/${search_name}/${search_filter}/1');
+  }
+
+  //GET DOCTOR DETAILS
+  Future<dynamic> get_doc_details(String id)async
+  {
+    return await _Api_Router.Perform_Request('${Apiclient.doctor_details}/${id}/1');
+  }
+
+  //GET MY DOCTOR FAVOURITIES
+  Future<dynamic> get_my_fav(String user_id)async
+  {
+    print('xxxxx${Apiclient.doctor_myfav}/${user_id}');
+    return await _Api_Router.Perform_Request('${Apiclient.doctor_myfav}/${user_id}');
+  }
+
+  //GET MY DOCTOR APPOIENMENTS
+  Future<dynamic> get_my_appoienments(String user_id)async
+  {
+    print('xxxxx${Apiclient.doctor_myappoienments}/${user_id}');
+    return await _Api_Router.Perform_Request('${Apiclient.doctor_myappoienments}/${user_id}');
+  }
 }

@@ -1,12 +1,9 @@
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
-import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
-import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
-import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
-import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class text_field_widget extends StatelessWidget {
   String hint;
   var prefixIcon, suffixIcon;

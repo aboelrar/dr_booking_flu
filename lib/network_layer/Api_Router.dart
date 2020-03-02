@@ -16,7 +16,6 @@ class Api_Router
   {
     var response = await http.post(url,body: map);
     var data = convert.jsonDecode(response.body);
-    print('aboelsohab ggggg${data}');
     return data;
   }
 }

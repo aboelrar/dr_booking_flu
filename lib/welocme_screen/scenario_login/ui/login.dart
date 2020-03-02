@@ -1,16 +1,14 @@
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
-import 'package:dr_booking_flu/welocme_screen/widgets/animation_widget.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/text_field_widget.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/welcome_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 
+// ignore: camel_case_types
 class login extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -19,6 +17,7 @@ class login extends StatefulWidget {
   }
 }
 
+// ignore: camel_case_types
 class login_state extends State<login> {
 
   var key = GlobalKey <FormState>();
