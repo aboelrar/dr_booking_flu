@@ -2,8 +2,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/ui/appoienments.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../ui/personal_information.dart';
 
 // ignore: camel_case_types
 class bottom_card extends StatelessWidget {
@@ -26,32 +29,43 @@ class bottom_card extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 3.5 / 5,
               child: Column(
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Image.asset(
-                            "images/person.png",
-                            width: 30,
-                            height: 30,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15.0),
-                            child: AutoSizeText(
-                              "البيانات الشخصية",
-                              style: TextStyle(
-                                  fontSize: 16.0, fontFamily: 'thesansbold'),
+                  GestureDetector(
+                    onTap: ()
+                    {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context)
+                          {
+                            return update_personal_info(); //GO TO EDIT MY PERSONAL INFORMATION
+                          }
+                      ));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Image.asset(
+                              "images/person.png",
+                              width: 30,
+                              height: 30,
                             ),
-                          ),
-                        ],
-                      ),
-                      Image.asset(
-                        "images/nxt_page.png",
-                        width: 15,
-                        height: 15,
-                      ),
-                    ],
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: AutoSizeText(
+                                "البيانات الشخصية",
+                                style: TextStyle(
+                                    fontSize: 16.0, fontFamily: 'thesansbold'),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image.asset(
+                          "images/nxt_page.png",
+                          width: 15,
+                          height: 15,
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10.0),

@@ -12,15 +12,16 @@ class top_card extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Container(
+        margin: EdgeInsets.only(top: 5.0),
         width: MediaQuery.of(context).size.width * 3.5 / 5,
         child: Column(
           children: <Widget>[
             ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: Image.asset(
-                  'images/person.png',
-                  width: 100,
-                  height: 100,
+                  'images/person_user.png',
+                  width: 70,
+                  height: 70,
                 )),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
