@@ -1,12 +1,25 @@
+import 'dart:math';
+
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image_bg.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/line.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/my_info_item.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/save_button.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class update_personal_info extends StatelessWidget {
-  @override
+
+   String name,email,phone;
+
+   update_personal_info(this.name, this.email, this.phone);
+
+
+
+   @override
   Widget build(BuildContext context) {
+
+
     // TODO: implement build
     return Scaffold(
       body: Stack(
@@ -28,19 +41,23 @@ class update_personal_info extends StatelessWidget {
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * .3 / 4),
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * .3 / 4),
                     child: Card(
-                      margin: EdgeInsets.only(right: 10.0,left: 10.0),
+                      margin: EdgeInsets.only(right: 10.0, left: 10.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 1.5 / 4,
+                        height: MediaQuery.of(context).size.height * 1.1 / 4,
                         child: Column(
                           children: <Widget>[
-                            my_info_item("محمود سعد","images/person.png"), //EDIT USER NAME
+                            my_info_item(name, "images/person.png",
+                                'تعديل الاسم',1), //EDIT USER NAME
                             line(), //LINE
-                            my_info_item("01141012485","images/phone.png"),
+                            my_info_item(phone, "images/phone.png",
+                                'تعديل الهاتف',2),
                             line(),
-                            my_info_item("amraboelnaga10@g.com","images/email.png"),
+                            my_info_item(email,
+                                "images/email.png", 'تعديل البريد الالكترونى',3),
                           ],
                         ),
                       ),
@@ -48,8 +65,19 @@ class update_personal_info extends StatelessWidget {
                   ),
                 ],
               )),
+          Positioned(
+            top: MediaQuery.of(context).size.height * 3 / 4,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.only(
+                  right: MediaQuery.of(context).size.width * 1 / 3,
+                  left: MediaQuery.of(context).size.width * 1 / 3),
+              child: save_button(),
+            ),
+          )
         ],
       ),
     );
   }
+
 }

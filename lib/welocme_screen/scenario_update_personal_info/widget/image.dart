@@ -6,8 +6,8 @@ class image extends StatelessWidget {
     // TODO: implement build
     return Image.asset(
       'images/person_user.png',
-      width: 100,
-      height: 100.0,
+      width: MediaQuery.of(context).size.width * .6 / 4,
+      height: MediaQuery.of(context).size.height * .6 / 4,
     );
   }
 }

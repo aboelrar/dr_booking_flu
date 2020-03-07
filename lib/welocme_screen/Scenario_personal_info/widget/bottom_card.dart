@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/ui/appoienments.dart';
@@ -5,13 +7,27 @@ import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../ui/personal_information.dart';
 
 // ignore: camel_case_types
 class bottom_card extends StatelessWidget {
+  String name, email, phone;
+
+  //GET DATA FROM LOCAL
+  void get_data_fromlocal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    name = prefs.get('user_name'); //GET NAME
+    email = prefs.get('user_email'); //GET EMAIL
+    phone = prefs.get('user_phone'); //GET PHONE
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    get_data_fromlocal(); //GET DATA FROM LOCAL
+
     // TODO: implement build
     return Stack(
       children: <Widget>[
@@ -30,14 +46,12 @@ class bottom_card extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   GestureDetector(
-                    onTap: ()
-                    {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)
-                          {
-                            return update_personal_info(); //GO TO EDIT MY PERSONAL INFORMATION
-                          }
-                      ));
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return update_personal_info(name, email,
+                            phone); //GO TO EDIT MY PERSONAL INFORMATION
+                      }));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,14 +88,11 @@ class bottom_card extends StatelessWidget {
                     color: const Color(0xff33d3d3d3),
                   ),
                   GestureDetector(
-                    onTap: ()
-                    {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)
-                          {
-                            return aappoienments(); //GO TO MY FAVOURITE
-                          }
-                      ));
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return aappoienments(); //GO TO MY FAVOURITE
+                      }));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -103,7 +114,8 @@ class bottom_card extends StatelessWidget {
                                 child: AutoSizeText(
                                   "حجوزاتى",
                                   style: TextStyle(
-                                      fontSize: 16.0, fontFamily: 'thesansbold'),
+                                      fontSize: 16.0,
+                                      fontFamily: 'thesansbold'),
                                 ),
                               ),
                             ],
@@ -124,14 +136,11 @@ class bottom_card extends StatelessWidget {
                     color: const Color(0xff33d3d3d3),
                   ),
                   GestureDetector(
-                    onTap: ()
-                    {
-                      Navigator.push(context, MaterialPageRoute(
-                          builder: (context)
-                          {
-                            return doctor_list(null,2); //GO TO MY FAVOURITE
-                          }
-                      ));
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return doctor_list(null, 2); //GO TO MY FAVOURITE
+                      }));
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
@@ -155,7 +164,8 @@ class bottom_card extends StatelessWidget {
                                 child: AutoSizeText(
                                   "مفضلتى",
                                   style: TextStyle(
-                                      fontSize: 16.0, fontFamily: 'thesansbold'),
+                                      fontSize: 16.0,
+                                      fontFamily: 'thesansbold'),
                                 ),
                               ),
                             ],
@@ -204,12 +214,9 @@ class bottom_card extends StatelessWidget {
               ),
               onPressed: () {
                 //SIGN OUT
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context)
-                    {
-                      return login();  //GO TO LOGIN PAGE
-                    }
-                ));
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return login(); //GO TO LOGIN PAGE
+                }));
               },
             ),
           ),
@@ -217,5 +224,4 @@ class bottom_card extends StatelessWidget {
       ],
     );
   }
-
 }
