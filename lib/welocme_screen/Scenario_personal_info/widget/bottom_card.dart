@@ -13,7 +13,7 @@ import '../ui/personal_information.dart';
 
 // ignore: camel_case_types
 class bottom_card extends StatelessWidget {
-  String name, email, phone;
+  static String name, email, phone;
 
   //GET DATA FROM LOCAL
   void get_data_fromlocal() async {

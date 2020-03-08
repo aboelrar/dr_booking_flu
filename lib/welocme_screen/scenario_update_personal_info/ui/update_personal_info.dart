@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image_bg.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/line.dart';
@@ -50,13 +51,13 @@ class update_personal_info extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 1.1 / 4,
                         child: Column(
                           children: <Widget>[
-                            my_info_item(name, "images/person.png",
+                            my_info_item(bottom_card.name, "images/person.png",
                                 'تعديل الاسم',1), //EDIT USER NAME
                             line(), //LINE
-                            my_info_item(phone, "images/phone.png",
+                            my_info_item(bottom_card.phone, "images/phone.png",
                                 'تعديل الهاتف',2),
                             line(),
-                            my_info_item(email,
+                            my_info_item(bottom_card.email,
                                 "images/email.png", 'تعديل البريد الالكترونى',3),
                           ],
                         ),

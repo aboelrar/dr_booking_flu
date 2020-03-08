@@ -1,3 +1,4 @@
+import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,18 +99,24 @@ class dialog {
 
     if (flag == 1) //IF EDIT ON NAME WITH FLAG ONE
     {
+      bottom_card.name = controller.text;  //SET TEXT NAME CONTROLLER THAT EDITED
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return update_personal_info(
             controller.text, email, phone); //IF EDIT ON NAME WITH FLAG ONE
       }));
     } else if (flag == 2) //IF EDIT ON PHONE WITH FLAG TWO
     {
+      bottom_card.phone = controller.text;  //SET TEXT PHONE CONTROLLER THAT EDITED
+
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return update_personal_info(
             name, email , controller.text); //IF EDIT ON PHONE WITH FLAG TWO
       }));
     } else if (flag == 3) //IF EDIT ON Email WITH FLAG THRER
     {
+
+      bottom_card.email = controller.text;  //SET TEXT EMAIL CONTROLLER THAT EDITED
+
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return update_personal_info(
             name, controller.text, phone ); //IF EDIT ON Email WITH FLAG THRER
