@@ -1,7 +1,9 @@
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'line.dart';
@@ -96,31 +98,20 @@ class dialog {
   check_dialog(
       int flag, BuildContext context, TextEditingController controller) {
     get_data_fromlocal(); //CALL METHOD THAT BACK FROM LOCAL DATA
+    final personal_info_model textInput = Provider.of<personal_info_model>(context);
 
     if (flag == 1) //IF EDIT ON NAME WITH FLAG ONE
     {
-      bottom_card.name = controller.text;  //SET TEXT NAME CONTROLLER THAT EDITED
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return update_personal_info(
-            controller.text, email, phone); //IF EDIT ON NAME WITH FLAG ONE
-      }));
+       textInput.set_username(controller.text);  //SET DATA TO USER_NAME
     } else if (flag == 2) //IF EDIT ON PHONE WITH FLAG TWO
     {
-      bottom_card.phone = controller.text;  //SET TEXT PHONE CONTROLLER THAT EDITED
-
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return update_personal_info(
-            name, email , controller.text); //IF EDIT ON PHONE WITH FLAG TWO
-      }));
+      textInput.set_phone(controller.text); //SET DATA TO USER_PHONE
     } else if (flag == 3) //IF EDIT ON Email WITH FLAG THRER
     {
+      textInput.set_email(controller.text);  //SET DATA TO USER_EMAIL
 
-      bottom_card.email = controller.text;  //SET TEXT EMAIL CONTROLLER THAT EDITED
-
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return update_personal_info(
-            name, controller.text, phone ); //IF EDIT ON Email WITH FLAG THRER
-      }));
     }
+
+    Navigator.pop(context); //CLOSE DIALOG
   }
 }

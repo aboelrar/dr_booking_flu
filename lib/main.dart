@@ -1,6 +1,7 @@
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<bottom_nav_provider>.value(
           value: bottom_nav_provider(),
+        ),
+        ChangeNotifierProvider<personal_info_model>.value(
+          value: personal_info_model(),
         ),
       ],
       child: MaterialApp(

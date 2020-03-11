@@ -1,25 +1,25 @@
 import 'dart:math';
 
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image_bg.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/line.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/my_info_item.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/save_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class update_personal_info extends StatelessWidget {
+  String name, email, phone;
 
-   String name,email,phone;
+  update_personal_info(this.name, this.email, this.phone);
 
-   update_personal_info(this.name, this.email, this.phone);
-
-
-
-   @override
+  @override
   Widget build(BuildContext context) {
 
+    final personal_info_model personal_info_data = Provider.of<personal_info_model>(context); //GET DATA FROM PROVIDER
 
     // TODO: implement build
     return Scaffold(
@@ -51,14 +51,14 @@ class update_personal_info extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 1.1 / 4,
                         child: Column(
                           children: <Widget>[
-                            my_info_item(bottom_card.name, "images/person.png",
-                                'تعديل الاسم',1), //EDIT USER NAME
+                            my_info_item(personal_info_data.userName, "images/person.png",
+                                'تعديل الاسم', 1), //EDIT USER NAME
                             line(), //LINE
-                            my_info_item(bottom_card.phone, "images/phone.png",
-                                'تعديل الهاتف',2),
+                            my_info_item(personal_info_data.phone, "images/phone.png",
+                                'تعديل الهاتف', 2),
                             line(),
-                            my_info_item(bottom_card.email,
-                                "images/email.png", 'تعديل البريد الالكترونى',3),
+                            my_info_item(personal_info_data.email, "images/email.png",
+                                'تعديل البريد الالكترونى', 3),
                           ],
                         ),
                       ),
@@ -80,5 +80,4 @@ class update_personal_info extends StatelessWidget {
       ),
     );
   }
-
 }

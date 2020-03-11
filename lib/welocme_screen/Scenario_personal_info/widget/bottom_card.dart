@@ -4,6 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/ui/appoienments.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ import '../ui/personal_information.dart';
 // ignore: camel_case_types
 class bottom_card extends StatelessWidget {
   static String name, email, phone;
+
 
   //GET DATA FROM LOCAL
   void get_data_fromlocal() async {

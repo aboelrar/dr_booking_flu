@@ -30,4 +30,6 @@ class Apiclient{
 
   static String doctor_myappoienments = '${Base_url}User/view_reservations/$User_Name/$Pass_Word';
 
+  static String edit_profile = '${Base_url}user/editProfile/$User_Name/$Pass_Word';
+
 }
