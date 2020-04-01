@@ -1,3 +1,4 @@
+import 'package:dr_booking_flu/local_data/send_data.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/progress_dialog.dart';
@@ -14,7 +15,7 @@ class save_button extends StatelessWidget {
   //GET DATA FROM LOCAL
   get_data_fromlocal() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    id = prefs.get('user_id'); //GET NAME
+    id = prefs.get('user_id'); //GET ID
   }
 
   @override
@@ -61,6 +62,9 @@ class save_button extends StatelessWidget {
       if (onValue['status'] == 1) {
         progress_dialog().dismiss_dialog(context);
         Toast.show("تم التعديل بنجاح...", context,backgroundColor: Colors.green);
+        send_data().save_user_data(
+            user_id, user_name, user_email, user_phone); //SAVE DATA TO SHAREDPREFRENCES
+
       }
     });
   }

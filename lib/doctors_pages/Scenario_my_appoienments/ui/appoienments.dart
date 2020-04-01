@@ -1,13 +1,15 @@
 import 'package:dr_booking_flu/app_widget/app_bar.dart';
+import 'package:dr_booking_flu/app_widget/progress_bar.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_details/ui/doctor_details.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/model/all_docsDoctor.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/model/all_docsRootClass.dart';
+import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/widget/doctor_item_reservation.dart';
 import 'package:dr_booking_flu/doctors_pages/widget/doctor_item.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class aappoienments extends StatelessWidget{
+class aappoienments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -17,11 +19,11 @@ class aappoienments extends StatelessWidget{
           future: Api_Call().get_my_appoienments("1"),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
-              return Container();
+              return progress_bar().progress_bar_loading(context);
             } else {
               //GET ALL DATA
               all_docsRootClass rootClass =
-              all_docsRootClass.fromJSON(snapshot.data);
+                  all_docsRootClass.fromJSON(snapshot.data);
               all_docsDoctor doctors;
               List<all_docsDoctor> all_docs = List<all_docsDoctor>();
 
@@ -40,18 +42,25 @@ class aappoienments extends StatelessWidget{
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                                  return doctor_details(all_docs[index].id);
-                                }));
+                              return doctor_details(
+                                  all_docs[index].doctor_id,
+                                  all_docs[index].latitude,
+                                  all_docs[index].longitude);
+                            }));
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
-                            child: doctor_item(
+                            child: doctor_item_reservation(
                                 all_docs[index].name,
                                 all_docs[index].jobTitle,
                                 all_docs[index].address,
                                 all_docs[index].price,
                                 all_docs[index].image,
-                                all_docs[index].favorite),
+                                all_docs[index].favorite,
+                                all_docs[index].id,
+                                all_docs[index].latitude,
+                                all_docs[index].longitude,
+                                all_docs[index].rate),
                           ),
                         );
                       },
@@ -64,5 +73,4 @@ class aappoienments extends StatelessWidget{
           }),
     );
   }
-
 }

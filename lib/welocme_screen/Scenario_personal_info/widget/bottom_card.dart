@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/ui/appoienments.dart';
+import 'package:dr_booking_flu/local_data/send_data.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/ui/update_personal_info.dart';
@@ -215,10 +216,12 @@ class bottom_card extends StatelessWidget {
                     color: Colors.black),
               ),
               onPressed: () {
-                //SIGN OUT
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return login(); //GO TO LOGIN PAGE
-                }));
+
+                send_data().status();  //SET STATUS WITH FALSE DURING LOGOUT
+
+                //SIGN OUT AND DELETE ALL PATHS
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => login()),);
+
               },
             ),
           ),

@@ -1,6 +1,8 @@
+import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_splash_screen/ui/splash_screen.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'doctors_pages/Scenario_doctor_list/model/doctor_list_provider.dart';
-import 'doctors_pages/scenario_search/model/bottom_nav.dart';
-import 'doctors_pages/scenario_search/ui/search.dart';
+import 'doctors_pages/Scenario_doctor_list/model/doctors_url.dart';
+import 'doctors_pages/scenario_main_screen/model/bottom_nav.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -32,6 +36,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<personal_info_model>.value(
           value: personal_info_model(),
+        ) ,
+        ChangeNotifierProvider<doctors_url>.value(
+          value: doctors_url(),
         ),
       ],
       child: MaterialApp(
@@ -48,7 +55,7 @@ class MyApp extends StatelessWidget {
           Locale("ar"),
         ],
         locale: Locale("ar"),
-        home: login(),
+        home: splash_screen(),
       ),
     );
   }

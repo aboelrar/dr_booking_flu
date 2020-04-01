@@ -36,6 +36,10 @@ dependencies:
   progress_dialog: ^1.2.0
   flutter_custom_dialog: ^1.0.16
   shared_preferences: ^0.5.3
+  progress_hud: ^1.1.0
+  flutter_progress_hud: ^1.0.2
+  google_maps_flutter: ^0.5.21+14
+  loading: ^1.0.2
   toast: ^0.1.5
   flutter_localizations:
     sdk: flutter
@@ -84,6 +88,14 @@ flutter:
     - images/hear.png
     - images/phone.png
     - images/email.png
+    - images/all_docs_loading.png
+    - images/error_login.png
+    - images/sad.png
+    - images/suceess_login.png
+    - images/no_data_found.png
+    - images/ticket.png
+    - images/tick.png
+    - images/anim.gif
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

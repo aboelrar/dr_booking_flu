@@ -8,7 +8,8 @@ class Doctor {
   var description;
   int favorite;    
   String id;    
-  String image;    
+  String doctor_id;
+  String image;
   var jobTitle;
   var latitude;
   var longitude;
@@ -21,7 +22,8 @@ class Doctor {
     this.description = parsedJson['description'];    
     this.favorite = parsedJson['favorite'];    
     this.id = parsedJson['id'];    
-    this.image = parsedJson['image'];    
+    this.doctor_id = parsedJson['doctor_id'];
+    this.image = parsedJson['image'];
     this.jobTitle = parsedJson['job_title'];    
     this.latitude = parsedJson['latitude'];    
     this.longitude = parsedJson['longitude'];    

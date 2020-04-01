@@ -10,4 +10,19 @@ class send_data {
     prefs.setString("user_phone", user_phone);
     prefs.setBool("status", true);
   }
+
+  //SET STATUS WITH FALSE
+ status() async
+ {
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+   prefs.setBool("status", false);
+ }
+
+ //SET STATUS WITH FALSE FOR WELCOME TOUR
+ status_welcome_tour() async
+ {
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+   prefs.setBool("status_welcome_tour", true);
+ }
+
 }

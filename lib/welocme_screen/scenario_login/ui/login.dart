@@ -5,6 +5,7 @@ import 'package:dr_booking_flu/welocme_screen/widgets/welcome_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 
@@ -68,13 +69,13 @@ class login_state extends State<login> {
                       children: <Widget>[
                         Expanded(
                           child: text_field_widget(
-                              'البريد الالكترونى', Icons.email, textInput.icon,emailController),
+                              'البريد الالكترونى', Icons.email, textInput.icon,emailController,TextInputType.text,false),
                           flex: 1,
                         ),
                         Expanded(
                           child: Center(
                               child: text_field_widget(
-                                  'كلمة السر', Icons.lock, textInput.supicon,passController)),
+                                  'كلمة السر', Icons.lock, textInput.supicon,passController,TextInputType.visiblePassword,true)),
                           flex: 2,
                         ),
                         Expanded(
@@ -107,7 +108,7 @@ class login_state extends State<login> {
                         .size
                         .height * 3 / 10,
                     child: Align(
-                      alignment: Alignment.bottomRight,
+                      alignment: Alignment.center,
                       child: Row(
                         textDirection: TextDirection.rtl,
                         mainAxisAlignment: MainAxisAlignment.center,

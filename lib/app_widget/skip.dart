@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:dr_booking_flu/doctors_pages/scenario_search/ui/search.dart';
+import 'package:dr_booking_flu/local_data/send_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -22,12 +22,9 @@ class skip extends StatelessWidget{
             GestureDetector(
               onTap: ()
               {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context)
-                    {
-                      return CS;
-                    }
-                ));
+                send_data().status_welcome_tour(); //SET CHECK TRUE AFTER FIRST TIME SKIP FROM APP
+                //GO TO NEXT PAGE AND DELETE PATHS
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CS),);
               },
               child: AutoSizeText(
                 "تخطى",
@@ -46,5 +43,7 @@ class skip extends StatelessWidget{
       ),
     );
   }
+
+
 
 }

@@ -32,4 +32,10 @@ class Apiclient{
 
   static String edit_profile = '${Base_url}user/editProfile/$User_Name/$Pass_Word';
 
+  static String Add_fav = '${Base_url}User/addFavoriteDoctor/$User_Name/$Pass_Word';
+
+  static String Delete_fav = '${Base_url}User/deleteFavoriteDoctor/$User_Name/$Pass_Word';
+
+  static String Make_reservation = '${Base_url}User/make_reservation/$User_Name/$Pass_Word';
+
 }

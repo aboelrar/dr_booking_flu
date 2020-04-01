@@ -1,20 +1,42 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/google_map/ui/map.dart';
+import 'package:dr_booking_flu/welocme_screen/widgets/dialog_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class doctor_item extends StatelessWidget {
-  String doc_name, doc_desc, doc_address, doc_price, doc_img;
+  String doc_name, doc_desc, doc_address, doc_price, doc_img,item_id;
   int fav_flag;
-  var fav_color;
+  var fav_color,lat,lng;
+  var rating;
 
   doctor_item(this.doc_name, this.doc_desc, this.doc_address, this.doc_price,
-      this.doc_img, this.fav_flag);
+      this.doc_img, this.fav_flag,this.item_id,this.lat,this.lng,this.rating);
+
+
+
+
+  static String id;
+  //GET DATA FROM LOCAL
+  get_data_fromlocal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.get('user_id'); //GET ID
+    print('ssssss${id}');
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
+    double rate_stars = rating.toDouble();  //CONVERT TO DOUBLE
+
+    get_data_fromlocal(); //CALL DATA FROM LOCAL
+
     //SET ICON FAV COLOR
-    if (fav_flag == 0) {
+    if (fav_flag == 1) {
       fav_color = Colors.red;
     } else {
       fav_color = Colors.black;
@@ -62,9 +84,10 @@ class doctor_item extends StatelessWidget {
                                   bottomLeft: const Radius.circular(10.0))),
                           child: Center(
                             child: (RatingBar(
-                              initialRating: 5,
+                              initialRating: rate_stars,
                               minRating: 1,
                               itemSize: 15.0,
+                              ignoreGestures: true,
                               direction: Axis.horizontal,
                               allowHalfRating: true,
                               itemCount: 5,
@@ -127,10 +150,17 @@ class doctor_item extends StatelessWidget {
                     ),
                     width: 25,
                     height: 25,
-                    child: Icon(
-                      Icons.favorite,
-                      size: 15.0,
-                      color: fav_color,
+                    child: GestureDetector(
+                      onTap: ()
+                      {
+
+                        dialog_loading().loading(context,item_id,id,fav_flag); //CALL LOADING DIALOG
+                      },
+                      child: Icon(
+                        Icons.favorite,
+                        size: 15.0,
+                        color: fav_color,
+                      ),
                     ),
                   ),
                 ],
@@ -171,27 +201,36 @@ class doctor_item extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * .5 / 2,
-                    height: MediaQuery.of(context).size.height * .5 / 10,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.place,
-                          size: 18,
-                          color: Colors.blue,
-                        ),
-                        AutoSizeText(
-                          "رؤية الخريطة",
-                          maxLines: 1,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 12.0,
-                              fontFamily: 'thesansbold'),
-                        ),
-                      ],
+                  GestureDetector(
+                    onTap: ()
+                    {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return map(lat,lng);
+                          }));
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * .5 / 2,
+                      height: MediaQuery.of(context).size.height * .5 / 10,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.place,
+                            size: 18,
+                            color: Colors.blue,
+                          ),
+                          AutoSizeText(
+                            "رؤية الخريطة",
+                            maxLines: 1,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 12.0,
+                                fontFamily: 'thesansbold'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

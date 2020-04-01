@@ -16,10 +16,24 @@ class update_personal_info extends StatelessWidget {
 
   update_personal_info(this.name, this.email, this.phone);
 
+  static int flag = 0;
+
   @override
   Widget build(BuildContext context) {
 
     final personal_info_model personal_info_data = Provider.of<personal_info_model>(context); //GET DATA FROM PROVIDER
+
+    if (flag == 0)
+      {
+        //SET DATA TO PROVIDER
+        personal_info_data.set_username(name);
+        personal_info_data.set_email(email);
+        personal_info_data.set_phone(phone);
+
+        flag = 1;
+      }
+
+
 
     // TODO: implement build
     return Scaffold(

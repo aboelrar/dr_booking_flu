@@ -6,14 +6,16 @@ import 'package:provider/provider.dart';
 // ignore: must_be_immutable
 class text_field_widget extends StatelessWidget {
   String hint;
-  var prefixIcon, suffixIcon;
+  var prefixIcon, suffixIcon ,keyboard_type,obscureText;
   TextEditingController controller;
 
-  text_field_widget(String hint, var prefixIcon,var suffixIcon,TextEditingController controller) {
+  text_field_widget(String hint, var prefixIcon,var suffixIcon,TextEditingController controller,var keyboard_type,var obscureText) {
     this.hint = hint;
     this.prefixIcon = prefixIcon;
     this.suffixIcon = suffixIcon;
     this.controller = controller;
+    this.keyboard_type = keyboard_type;
+    this.obscureText = obscureText;
   }
 
   @override
@@ -23,6 +25,8 @@ class text_field_widget extends StatelessWidget {
     final text_input textInput = Provider.of<text_input>(context);
 
     return TextFormField(
+      obscureText: obscureText,
+      keyboardType: keyboard_type,
       controller: controller ,
       onFieldSubmitted: (term) {
         text_field_submit(term,textInput);
@@ -33,10 +37,6 @@ class text_field_widget extends StatelessWidget {
       ),
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon),
-        suffixIcon: Icon(
-          suffixIcon,
-          color: Colors.blue,
-        ),
         enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: Colors.grey,
@@ -60,12 +60,10 @@ class text_field_widget extends StatelessWidget {
     }
     else if(num==0)
     {
-      textInput.set_icon(Icons.done);
       num=1;
     }
     else if(num==1)
     {
-      textInput.set_sup_icon(Icons.done);
     }
   }
 }

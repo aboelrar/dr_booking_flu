@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/app_widget/skip.dart';
-import 'package:dr_booking_flu/doctors_pages/scenario_search/ui/search.dart';
+import 'package:dr_booking_flu/doctors_pages/scenario_main_screen/ui/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
