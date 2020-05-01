@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class error_signup_dialog {
-  error_dialog(BuildContext context,String message) {
+class no_appoienments_dialog {
+  no_appoienments_dialog(BuildContext context) {
     showGeneralDialog(
         context: context,
         barrierLabel: "Label",
@@ -27,7 +27,7 @@ class error_signup_dialog {
                   Padding(
                     padding: const EdgeInsets.only(top:15.0),
                     child: AutoSizeText(
-                      'خطا ما!',
+                      'ناسف لكم !',
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 18.0,
@@ -37,7 +37,7 @@ class error_signup_dialog {
                   Padding(
                     padding: const EdgeInsets.only(top:7.0),
                     child: Text(
-                      message,
+                      'لا توجد مواعيد متاحه لدى هذا الطبيب ...',
                       style: TextStyle(
                           fontSize: 14.0,
                           fontFamily: 'thesansbold'),
@@ -57,7 +57,7 @@ class error_signup_dialog {
                         Navigator.pop(context); //CANCEL DIALOG
                       },
                       child: AutoSizeText(
-                        'حاول مجددا',
+                        'اغلاق',
                         style: TextStyle(fontSize: 15.0),
                       ),
                     ),
@@ -70,7 +70,7 @@ class error_signup_dialog {
       transitionBuilder: (context, anim1, anim2, child) {
         return SlideTransition(
           position:
-          Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(anim1),
+          Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(anim1),
           child: child,
         );
       },);

@@ -10,6 +10,7 @@ class bottom_nav_provider extends ChangeNotifier {
 
  Future<void> set_widget(var widget)async
 {
+
   this._widget =  widget;
   notifyListeners();
 }

@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/check_internet_connection/check_connection_listner.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/app_logo.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/text_field_widget.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/welcome_button.dart';
@@ -25,6 +26,7 @@ class sign_up_state extends State<sign_up>
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
           child: ListView(
               children: <Widget>[
@@ -41,7 +43,7 @@ class sign_up_state extends State<sign_up>
                       ),
 
                       Padding(
-                        padding: const EdgeInsets.only(top:40.0),
+                        padding: const EdgeInsets.only(top:10.0),
                         child: app_logo(),
                       ),
                       Container(
@@ -62,7 +64,7 @@ class sign_up_state extends State<sign_up>
                               child: text_field_widget("البريد الالكترونى",Icons.email,null,email,TextInputType.emailAddress,false),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top:25.0),
+                              padding: const EdgeInsets.only(top:25.0,bottom: 20.0),
                               child: welcome_button("تسجيل",username.text,password.text,email.text,phone.text,2),
                             ),
                           ],
@@ -76,4 +78,12 @@ class sign_up_state extends State<sign_up>
       ),
     );
   }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    check_connection_listner(context); //CONNECTION LISTNER
+  }
+
 }

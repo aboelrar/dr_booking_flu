@@ -29,6 +29,7 @@ dependencies:
   provider: ^3.2.0
   cuberto_bottom_bar: ^1.0.0
   circular_bottom_navigation: ^1.0.1
+  circle_bottom_navigation: ^1.0.5
   page_indicator: ^0.3.0
   material_design_icons_flutter: ^3.4.4895
   http: ^0.12.0+2
@@ -41,6 +42,11 @@ dependencies:
   google_maps_flutter: ^0.5.21+14
   loading: ^1.0.2
   toast: ^0.1.5
+  shimmer: ^1.1.0
+  fancy_shimmer_image: ^1.0.0
+  fancy_bottom_navigation: ^0.3.2
+  fancy_dialog: ^1.0.3
+  connectivity: ^0.4.6
   flutter_localizations:
     sdk: flutter
 
@@ -96,6 +102,8 @@ flutter:
     - images/ticket.png
     - images/tick.png
     - images/anim.gif
+    - images/pencil.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

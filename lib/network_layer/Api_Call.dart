@@ -19,8 +19,9 @@ class Api_Call {
   }
 
   //GET_DOCTOR_LIST
-  Future<dynamic> get_all_docs() async {
-    return await _Api_Router.Perform_Request(Apiclient.get_all_doctors);
+  Future<dynamic> get_all_docs(String user_id) async {
+    print('alldocs_is${Apiclient.get_all_doctors}/${user_id}');
+    return await _Api_Router.Perform_Request('${Apiclient.get_all_doctors}/${user_id}');
   }
 
   //GET_DOCTOR_LIST_USING_SEARCH
@@ -78,5 +79,20 @@ class Api_Call {
   Future<dynamic> make_reservation(String user_id,String doctor_id, String reservation_id) async {
     return await _Api_Router.Perform_Request(
         '${Apiclient.Make_reservation}/${user_id}/${doctor_id}/${reservation_id}');
+  }
+
+  //SET RATE
+  Future<dynamic> set_rate(String user_id,String doc_id,int rate) async {
+    print('${Apiclient.Rate}/${user_id}/${doc_id}/${rate}');
+    return await _Api_Router.Perform_Request(
+        '${Apiclient.Rate}/${user_id}/${doc_id}/${rate}');
+  }
+
+  //GET USER INFO
+  Future<dynamic> get_indo(String user_id) async {
+    print('${Apiclient.User_info}/${user_id}');
+
+    return await _Api_Router.Perform_Request(
+        '${Apiclient.User_info}/${user_id}');
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dr_booking_flu/check_internet_connection/check_connection_listner.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/text_input.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_registration/ui/sign_up.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/text_field_widget.dart';
@@ -82,7 +83,7 @@ class login_state extends State<login> {
                           child: Align(
                             alignment: Alignment.topRight,
                             child: AutoSizeText(
-                              "نسيت كلمة السر؟",
+                              "",
                               style: TextStyle(
                                   fontSize: 15.0,
                                   color: Theme
@@ -148,5 +149,12 @@ class login_state extends State<login> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    check_connection_listner(context); //CONNECTION LISTNER
   }
 }

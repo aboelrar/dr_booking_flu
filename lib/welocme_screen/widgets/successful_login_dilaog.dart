@@ -6,8 +6,13 @@ class successful_login_dilog {
 
   void show_dialog (BuildContext context)
   {
-    showDialog(context: context,builder: (context)
-    {
+    showGeneralDialog(context: context,
+        barrierLabel: "Label",
+        barrierDismissible: true,
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionDuration: Duration(milliseconds: 700),
+        pageBuilder: (context, anim1, anim2)
+        {
       return Dialog(
         shape: RoundedRectangleBorder(
          borderRadius: BorderRadius.circular(15.0),
@@ -23,7 +28,14 @@ class successful_login_dilog {
           ),
         ),
       );
-    });
+    },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position:
+          Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },);
   }
 
 }

@@ -5,6 +5,7 @@ import 'package:dr_booking_flu/doctors_pages/scenario_main_screen/ui/search.dart
 import 'package:dr_booking_flu/welocme_screen/scenario_login/ui/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -17,8 +18,11 @@ class splash_screen extends StatefulWidget {
 }
 
 class splash_state extends State<splash_screen> {
+
+
   @override
   Widget build(BuildContext context) {
+
     // TODO: implement build
     return Scaffold(
       body: Stack(

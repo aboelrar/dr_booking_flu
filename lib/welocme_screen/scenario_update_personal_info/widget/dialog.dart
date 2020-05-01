@@ -17,9 +17,13 @@ class dialog {
       text: text,
     );
 
-    showDialog(
+    showGeneralDialog(
         context: context,
-        builder: (BuildContext context) {
+        barrierLabel: "Label",
+        barrierDismissible: true,
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionDuration: Duration(milliseconds: 700),
+        pageBuilder: (context, anim1, anim2) {
           return Dialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)), //this right here
@@ -83,7 +87,14 @@ class dialog {
               ),
             ),
           );
-        });
+        },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position:
+          Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },);
   }
 
   String name, email, phone; //DEFINE VARS

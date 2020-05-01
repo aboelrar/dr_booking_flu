@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dr_booking_flu/app_widget/app_bar.dart';
 import 'package:dr_booking_flu/app_widget/progress_bar.dart';
+import 'package:dr_booking_flu/check_internet_connection/check_connection_listner.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_details/model/Date.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_details/model/Date.dart'
     as prefix0;
@@ -10,6 +11,7 @@ import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_details/widget/appo
 import 'package:dr_booking_flu/doctors_pages/widget/drawer_paint_doc_list.dart';
 import 'package:dr_booking_flu/google_map/ui/map.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,8 +36,9 @@ class doctor_details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     add_maplist_data(); //CALL METHOD THAT DATA ADDED IN
+
+    check_connection_listner(context); //CONNECTION LISTNER
 
     // TODO: implement build
     return Scaffold(
@@ -98,8 +101,8 @@ class doctor_details extends StatelessWidget {
                                   children: <Widget>[
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(20.0),
-                                      child: Image.network(
-                                        doctor.image,
+                                      child: FancyShimmerImage(
+                                        imageUrl: doctor.image,
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 3.6 /
@@ -108,7 +111,9 @@ class doctor_details extends StatelessWidget {
                                             MediaQuery.of(context).size.height *
                                                 1 /
                                                 5,
-                                        fit: BoxFit.cover,
+                                        shimmerBaseColor: Colors.grey,
+                                        shimmerHighlightColor: Colors.white,
+                                        shimmerBackColor: Colors.blue,
                                       ),
                                     ),
                                     Container(
@@ -184,7 +189,7 @@ class doctor_details extends StatelessWidget {
                                                       const EdgeInsets.only(
                                                           right: 20),
                                                   child: AutoSizeText(
-                                                    "${doctor.price} جنيه",
+                                                    "${doctor.price} ريال",
                                                     style: TextStyle(
                                                         fontFamily:
                                                             'thesansbold',
@@ -196,21 +201,22 @@ class doctor_details extends StatelessWidget {
                                             ),
                                           ),
                                           GestureDetector(
-                                            onTap: ()
-                                            {
+                                            onTap: () {
                                               Navigator.push(context,
-                                                  MaterialPageRoute(builder: (context) {
-                                                    return map(lat,lng);
-                                                  }));
+                                                  MaterialPageRoute(
+                                                      builder: (context) {
+                                                return map(lat, lng);
+                                              }));
                                             },
                                             child: Container(
-                                              margin: EdgeInsets.only(top: 10.0),
+                                              margin:
+                                                  EdgeInsets.only(top: 10.0),
                                               child: Row(
                                                 children: <Widget>[
                                                   ClipRRect(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        11.0),
+                                                        BorderRadius.circular(
+                                                            11.0),
                                                     child: Container(
                                                       height: 35,
                                                       width: 35,
@@ -225,15 +231,16 @@ class doctor_details extends StatelessWidget {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                    const EdgeInsets.only(
-                                                        right: 20),
+                                                        const EdgeInsets.only(
+                                                            right: 20),
                                                     child: AutoSizeText(
                                                       "رؤية الخريطة",
                                                       style: TextStyle(
                                                           fontFamily:
-                                                          'thesansbold',
+                                                              'thesansbold',
                                                           fontSize: 15.0,
-                                                          color: Theme.of(context)
+                                                          color: Theme.of(
+                                                                  context)
                                                               .primaryColor),
                                                     ),
                                                   ),

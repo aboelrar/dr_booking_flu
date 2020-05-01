@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:circle_bottom_navigation/circle_bottom_navigation.dart';
+import 'package:circle_bottom_navigation/widgets/tab_data.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_search/ui/search_page.dart';
 import 'package:dr_booking_flu/doctors_pages/scenario_main_screen/model/bottom_nav.dart';
@@ -24,6 +26,7 @@ class bottom_navigation extends StatefulWidget {
 class bottom_state extends State<bottom_navigation>
 {
   static int get selectedPos => 1;
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class bottom_state extends State<bottom_navigation>
       print('pos is :${position}');
 
 
-         if (position == 0) {
+         if (position == 1) {
          await personal_info_data.set_widget(personal_information());
         }
          else {
@@ -60,14 +63,24 @@ class bottom_state extends State<bottom_navigation>
     }
 
     // TODO: implement build
-    return CircularBottomNavigation(
-      tabItems,
-      controller: _navigationController,
-      barHeight: 50.0,
-      barBackgroundColor: Colors.white,
-      selectedCallback: (int selectedPos) {
+    return CircleBottomNavigation(
+      circleSize: 50,
+      barHeight: 70,
+      initialSelection: currentPage,
+      arcHeight: 0,
+      arcWidth: 0,
+      circleOutline: 15,
+      textColor: Colors.black,
+      tabs: [
+        TabData(icon: Icons.search , title:  'البحث'),
+        TabData(icon: Icons.person,title: 'البيانات الشخصيه'),
 
-        bottom_nav(selectedPos) ;
+      ],
+      onTabChangedListener: (index) {
+        setState(() {
+          currentPage = index;
+          bottom_nav(index);
+        });
       },
     );
   }

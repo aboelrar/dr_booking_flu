@@ -1,25 +1,88 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/model/doctor_list_provider.dart';
 import 'package:dr_booking_flu/google_map/ui/map.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/dialog_loading.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
 
-class doctor_item extends StatelessWidget {
-  String doc_name, doc_desc, doc_address, doc_price, doc_img,item_id;
+class doctor_item extends StatefulWidget {
+  String doc_name, doc_desc, doc_address, doc_price, doc_img, item_id;
   int fav_flag;
-  var fav_color,lat,lng;
-  var rating;
+  var fav_color, lat, lng;
+  var rating, index, search_txt, flag;
 
-  doctor_item(this.doc_name, this.doc_desc, this.doc_address, this.doc_price,
-      this.doc_img, this.fav_flag,this.item_id,this.lat,this.lng,this.rating);
-
-
-
+  doctor_item(
+      this.doc_name,
+      this.doc_desc,
+      this.doc_address,
+      this.doc_price,
+      this.doc_img,
+      this.fav_flag,
+      this.item_id,
+      this.lat,
+      this.lng,
+      this.rating,
+      this.index,
+      this.search_txt,
+      this.flag);
 
   static String id;
+
+  //GET DATA FROM LOCAL
+  get_data_fromlocal() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.get('user_id'); //GET ID
+    print('ssssss${id}');
+  }
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return   doc_item_state(
+        this.doc_name,
+        this.doc_desc,
+        this.doc_address,
+        this.doc_price,
+        this.doc_img,
+        this.fav_flag,
+        this.item_id,
+        this.lat,
+        this.lng,
+        this.rating,
+        this.index,
+        this.search_txt,
+        this.flag);
+  }
+
+}
+
+class doc_item_state extends State<doctor_item>{
+  String doc_name, doc_desc, doc_address, doc_price, doc_img, item_id;
+  int fav_flag;
+  var fav_color, lat, lng;
+  var rating, index, search_txt, flag;
+
+  doc_item_state(
+      this.doc_name,
+      this.doc_desc,
+      this.doc_address,
+      this.doc_price,
+      this.doc_img,
+      this.fav_flag,
+      this.item_id,
+      this.lat,
+      this.lng,
+      this.rating,
+      this.index,
+      this.search_txt,
+      this.flag);
+
+  static String id;
+
   //GET DATA FROM LOCAL
   get_data_fromlocal() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -29,9 +92,10 @@ class doctor_item extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double rate_stars = rating.toDouble(); //CONVERT TO DOUBLE
 
-
-    double rate_stars = rating.toDouble();  //CONVERT TO DOUBLE
+    final doctor_list_provider doctors_list_fav =
+    Provider.of<doctor_list_provider>(context);
 
     get_data_fromlocal(); //CALL DATA FROM LOCAL
 
@@ -64,14 +128,16 @@ class doctor_item extends StatelessWidget {
                   Stack(
                     children: <Widget>[
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(
-                          doc_img,
-                          width: MediaQuery.of(context).size.width * 2.6 / 10,
-                          height: MediaQuery.of(context).size.height * 1.3 / 10,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: FancyShimmerImage(
+                            imageUrl: doc_img,
+                            shimmerBaseColor: Colors.grey,
+                            shimmerHighlightColor: Colors.white,
+                            shimmerBackColor: Colors.blue,
+                            width: MediaQuery.of(context).size.width * 2.6 / 10,
+                            height:
+                            MediaQuery.of(context).size.height * 1.3 / 10,
+                          )),
                       Positioned(
                         top: MediaQuery.of(context).size.height * .9 / 10,
                         width: MediaQuery.of(context).size.width * 2.6 / 10,
@@ -92,7 +158,7 @@ class doctor_item extends StatelessWidget {
                               allowHalfRating: true,
                               itemCount: 5,
                               itemPadding:
-                                  EdgeInsets.symmetric(horizontal: 1.0),
+                              EdgeInsets.symmetric(horizontal: 1.0),
                               itemBuilder: (context, _) => Icon(
                                 Icons.star,
                                 color: Colors.orange,
@@ -151,10 +217,20 @@ class doctor_item extends StatelessWidget {
                     width: 25,
                     height: 25,
                     child: GestureDetector(
-                      onTap: ()
-                      {
-
-                        dialog_loading().loading(context,item_id,id,fav_flag); //CALL LOADING DIALOG
+                      onTap: () {
+                       dialog_loading().loading(context, item_id, id,
+                            fav_flag,search_txt,flag); //CALL LOADING DIALOG
+                      setState(() {
+                        if(fav_flag == 0)
+                        {
+                          fav_color =Colors.black;
+                          fav_flag = 1;
+                        }
+                        else{
+                          fav_color =Colors.red;
+                          fav_flag = 0;
+                        }
+                      });
                       },
                       child: Icon(
                         Icons.favorite,
@@ -202,11 +278,10 @@ class doctor_item extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: ()
-                    {
+                    onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                            return map(lat,lng);
+                            return map(lat, lng);
                           }));
                     },
                     child: Container(
@@ -243,20 +318,16 @@ class doctor_item extends StatelessWidget {
   }
 
   //CHECK ITEM IF NULL OR NOT
-  void check_item_if_null()
-  {
-    if(doc_desc==null)
-      {
-        doc_desc = 'لايوجد وصف'; //IF DESCRIPITION IS NULL
-      }
-    if(doc_address == null)
-      {
-        doc_address = 'لايوجد عنوان';  //IF   ADDRESS IS NULL
-      }
-    if(doc_name == null)
-      {
-        doc_name = 'لايوجد اسم';  //IF NAME IS NULL
+  void check_item_if_null() {
+    if (doc_desc == null) {
+      doc_desc = 'لايوجد وصف'; //IF DESCRIPITION IS NULL
+    }
+    if (doc_address == null) {
+      doc_address = 'لايوجد عنوان'; //IF   ADDRESS IS NULL
+    }
+    if (doc_name == null) {
+      doc_name = 'لايوجد اسم'; //IF NAME IS NULL
 
-      }
+    }
   }
 }

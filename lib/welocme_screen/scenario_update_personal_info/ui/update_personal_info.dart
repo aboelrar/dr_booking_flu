@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dr_booking_flu/check_internet_connection/check_connection_listner.dart';
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/widget/image.dart';
@@ -21,19 +22,19 @@ class update_personal_info extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final personal_info_model personal_info_data = Provider.of<personal_info_model>(context); //GET DATA FROM PROVIDER
+    check_connection_listner(context); //CONNECTION LISTNER
 
-    if (flag == 0)
-      {
-        //SET DATA TO PROVIDER
-        personal_info_data.set_username(name);
-        personal_info_data.set_email(email);
-        personal_info_data.set_phone(phone);
+    final personal_info_model personal_info_data =
+        Provider.of<personal_info_model>(context); //GET DATA FROM PROVIDER
 
-        flag = 1;
-      }
+    if (flag == 0) {
+      //SET DATA TO PROVIDER
+      personal_info_data.set_username(name);
+      personal_info_data.set_email(email);
+      personal_info_data.set_phone(phone);
 
-
+      flag = 1;
+    }
 
     // TODO: implement build
     return Scaffold(
@@ -65,14 +66,20 @@ class update_personal_info extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 1.1 / 4,
                         child: Column(
                           children: <Widget>[
-                            my_info_item(personal_info_data.userName, "images/person.png",
-                                'تعديل الاسم', 1), //EDIT USER NAME
+                            my_info_item(
+                                personal_info_data.userName,
+                                "images/person.png",
+                                'تعديل الاسم',
+                                1), //EDIT USER NAME
                             line(), //LINE
-                            my_info_item(personal_info_data.phone, "images/phone.png",
-                                'تعديل الهاتف', 2),
+                            my_info_item(personal_info_data.phone,
+                                "images/phone.png", 'تعديل الهاتف', 2),
                             line(),
-                            my_info_item(personal_info_data.email, "images/email.png",
-                                'تعديل البريد الالكترونى', 3),
+                            my_info_item(
+                                personal_info_data.email,
+                                "images/email.png",
+                                'تعديل البريد الالكترونى',
+                                3),
                           ],
                         ),
                       ),

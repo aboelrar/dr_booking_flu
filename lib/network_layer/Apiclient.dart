@@ -18,7 +18,7 @@ class Apiclient{
 
   static String sign_up = '${Base_url}User/register/${User_Name}/${Pass_Word}';
 
-  static String get_all_doctors = '${Base_url}Doctor/getAll/${User_Name}/${Pass_Word}/1';
+  static String get_all_doctors = '${Base_url}Doctor/getAll/${User_Name}/${Pass_Word}';
 
   static String get_search_doctors = '${Base_url}Search/index/${User_Name}/${Pass_Word}';
 
@@ -37,5 +37,9 @@ class Apiclient{
   static String Delete_fav = '${Base_url}User/deleteFavoriteDoctor/$User_Name/$Pass_Word';
 
   static String Make_reservation = '${Base_url}User/make_reservation/$User_Name/$Pass_Word';
+
+  static String Rate = '${Base_url}User/addRate/$User_Name/$Pass_Word';
+
+  static String User_info = '${Base_url}User/view/$User_Name/$Pass_Word';
 
 }

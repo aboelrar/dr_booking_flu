@@ -6,9 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class successful_login_dialog {
   success_dialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
+    showGeneralDialog(context: context,
+        barrierLabel: "Label",
+        barrierDismissible: true,
+        barrierColor: Colors.black.withOpacity(0.5),
+        transitionDuration: Duration(milliseconds: 700),
+        pageBuilder: (context, anim1, anim2)
+         {
           return Dialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
@@ -44,7 +48,14 @@ class successful_login_dialog {
               ),
             ),
           );
-        });
+        },
+      transitionBuilder: (context, anim1, anim2, child) {
+        return SlideTransition(
+          position:
+          Tween(begin: Offset(1, 0), end: Offset(0, 0)).animate(anim1),
+          child: child,
+        );
+      },);
 
     get_data_fromlocal(); //METHOD TO CHECK IF STATUS TRUE OR FALSE TO KNOW GO TO WELCOME TOUR OR MAIN SCREEN
     go_to_main_page(context); //CALL METHOD THAT WILL GO TO MAIN PAGE
@@ -59,18 +70,18 @@ class successful_login_dialog {
   }
 
   go_to_main_page(BuildContext context) async {
-    await new Future.delayed(const Duration(seconds: 1));
+    await new Future.delayed(const Duration(milliseconds: 1200));
+
+         var route_to;
+        if (status == true) {
+          route_to =  search();  //GO TO SEARCH IF STATUS EQUAL TRUE
+        } else {
+          route_to =  welcome_tour();  //GO TO WELCOME TOUR IF NOT EQUAL TRUE
+        }
 
     //DELETE ALL PATHS AND GO NEXT PAGE
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) {
-        if (status == true) {
-          return search();  //GO TO SEARCH IF STATUS EQUAL TRUE
-        } else {
-          return welcome_tour();  //GO TO WELCOME TOUR IF NOT EQUAL TRUE
-        }
-      }),
-    );
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+        route_to), (Route<dynamic> route) => false);
+
   }
 }

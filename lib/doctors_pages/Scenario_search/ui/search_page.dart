@@ -87,6 +87,7 @@ class search_state extends State<search_page>{
                     Navigator.push(context, MaterialPageRoute(
                         builder: (context)
                         {
+                          doctor_list.num_id = 0;
                           return doctor_list(searchController.text,1);
                         }
                     ));

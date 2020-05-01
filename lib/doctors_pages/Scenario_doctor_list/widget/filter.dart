@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 
 class filter extends StatelessWidget {
   var search_txt = 'rate';
-  var text_is;
+  var text_is,text_name;
 
   filter(this.search_txt);
 
@@ -37,16 +37,18 @@ class filter extends StatelessWidget {
                   .get_all_docs_search(search_txt, 'rate'); //GET ALL DOCTORS FILTERD
               doctors_method_api.set_method(doctor_method); //SET DATA TO PROVIDER
 
-              dialog_loading_filter().loading(context); //START WORKING DIALOG
+              dialog_loading_filter().loading(context,search_txt); //START WORKING DIALOG
+
+            
+
+              text_is = 'rate';
+              doctor_list.status = 'rate';
+
 
               doctors_method_api.set_RateColors();  //SET COLOR SELECTED
               //SET ALL COLORS UNSELECTED
               doctors_method_api.set_LpriceDefult();
               doctors_method_api.set_HpriceDefult();
-
-              text_is = 'rate';
-              doctor_list.status = 'rate';
-
 
 
 
@@ -81,7 +83,7 @@ class filter extends StatelessWidget {
                   .get_all_docs_search(search_txt, 'price_desc'); //GET ALL DOCTORS FILTERD
               doctors_method_api.set_method(doctor_method); //SET DATA TO PROVIDER
 
-              dialog_loading_filter().loading(context); //START WORKING DIALOG
+              dialog_loading_filter().loading(context,search_txt); //START WORKING DIALOG
 
               doctors_method_api.set_HpriceColors();  //SET COLOR SELECTED
               //SET ALL COLORS UNSELECTED
@@ -125,7 +127,7 @@ class filter extends StatelessWidget {
                   .get_all_docs_search(search_txt, 'price_asc'); //GET ALL DOCTORS FILTERD
               doctors_method_api.set_method(doctor_method); //SET DATA TO PROVIDER
 
-              dialog_loading_filter().loading(context); //START WORKING DIALOG
+              dialog_loading_filter().loading(context,search_txt); //START WORKING DIALOG
 
               doctors_method_api.set_LpriceColors();  //SET COLOR SELECTED
               //SET ALL COLORS UNSELECTED

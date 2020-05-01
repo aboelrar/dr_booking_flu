@@ -2,6 +2,8 @@ import 'package:dr_booking_flu/local_data/send_data.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/UserDatum.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_login/model/root_user_info.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_registration/model/User.dart';
+import 'package:dr_booking_flu/welocme_screen/scenario_registration/model/user_details.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_welcome_tour/ui/welcome_tour.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/error_login_dialog.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/error_signup_dialog.dart';
@@ -88,12 +90,39 @@ class welcome_button extends StatelessWidget {
         //ACTIONS HERE
         if (value['status'] == 1) {
           //IF SIGN UP SUCCESS
-          successfull_signup_dialog()
-              .success_dialog(context); //OPEN SUCCESS DIALOG
+
+          String user_id = value['id_user']; //GET USER ID
+
+          onResponse_signup(user_id,context); //GET DATA FROM SERVER
+
         } else if (value['status'] == 2) {
           error_signup_dialog().error_dialog(context,value['message']); //OPEN ERROR DIALOG
         }
       });
     }
+  }
+
+  //GET DATA FROM SERVER SIGN UP
+  onResponse_signup(String user_id,BuildContext context)
+  {
+    Api_Call().get_indo(user_id).then((value){
+      if(value['status']==1)
+        {
+          user_details name =
+          user_details.fromJSON(value); //GET ROOT CLASS OF ALL RESPONSE
+          User datum = User.fromJSON(name.user); //GET USER DATA
+
+          String userName = datum.name; //GET EMAIL
+          String email = datum.mail; //GET EMAIL
+          String phone = datum.phone; //GET PHONE
+          String id = datum.id; //GET ID
+
+          send_data().save_user_data(
+              id, userName, email, phone); //SAVE DATA TO SHAREDPREFRENCES
+
+          successfull_signup_dialog()
+              .success_dialog(context); //OPEN SUCCESS DIALOG
+        }
+    });
   }
 }

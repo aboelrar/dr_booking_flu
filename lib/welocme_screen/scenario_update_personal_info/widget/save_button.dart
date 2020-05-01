@@ -1,3 +1,4 @@
+import 'package:dr_booking_flu/doctors_pages/scenario_main_screen/ui/search.dart';
 import 'package:dr_booking_flu/local_data/send_data.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
 import 'package:dr_booking_flu/welocme_screen/scenario_update_personal_info/model/personal_info_model.dart';
@@ -65,7 +66,20 @@ class save_button extends StatelessWidget {
         send_data().save_user_data(
             user_id, user_name, user_email, user_phone); //SAVE DATA TO SHAREDPREFRENCES
 
+        //GO TO SEARCH PAGE
+        Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context)
+            {
+              return search();
+            }
+        ));
+
       }
+      else if((onValue['status']==2)||(onValue['status']==3))
+        {
+          progress_dialog().dismiss_dialog(context);
+          Toast.show(onValue['message'], context,backgroundColor: Colors.red,duration: 2);
+        }
     });
   }
 }

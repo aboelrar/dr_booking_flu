@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/doctors_pages/scenario_main_screen/ui/search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -26,14 +27,14 @@ class top_card extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: AutoSizeText(
-                "محمود سعد",
+                search_state.name,
                 style: TextStyle(fontSize: 17.0, fontFamily: 'thesansbold'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5.0,bottom: 10.0),
               child: AutoSizeText(
-                "01141012485",
+                search_state.phone,
                 style: TextStyle(fontSize: 17.0, fontFamily: 'thesansbold'),
               ),
             ),

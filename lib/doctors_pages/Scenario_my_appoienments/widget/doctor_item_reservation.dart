@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:dr_booking_flu/doctors_pages/Scenario_my_appoienments/widget/rate.dart';
 import 'package:dr_booking_flu/google_map/ui/map.dart';
 import 'package:dr_booking_flu/welocme_screen/widgets/dialog_loading.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -8,13 +10,13 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class doctor_item_reservation extends StatelessWidget {
-  String doc_name, doc_desc, doc_address, doc_price, doc_img,item_id;
+  String doc_name, doc_desc, doc_address, doc_price, doc_img,item_id,doc_id;
   int fav_flag;
   var fav_color,lat,lng;
   var rating;
 
   doctor_item_reservation(this.doc_name, this.doc_desc, this.doc_address, this.doc_price,
-      this.doc_img, this.fav_flag,this.item_id,this.lat,this.lng,this.rating);
+      this.doc_img, this.fav_flag,this.item_id,this.lat,this.lng,this.rating,this.doc_id);
 
 
 
@@ -60,11 +62,13 @@ class doctor_item_reservation extends StatelessWidget {
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
-                        child: Image.network(
-                          doc_img,
+                        child: FancyShimmerImage(
+                          imageUrl: doc_img,
+                          shimmerBaseColor: Colors.grey,
+                          shimmerHighlightColor: Colors.white,
+                          shimmerBackColor: Colors.blue,
                           width: MediaQuery.of(context).size.width * 2.6 / 10,
                           height: MediaQuery.of(context).size.height * 1.3 / 10,
-                          fit: BoxFit.cover,
                         ),
                       ),
                       Positioned(
@@ -137,20 +141,26 @@ class doctor_item_reservation extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      color: Colors.green,
-                    ),
-                    width: 25,
-                    height: 25,
-                    child: Icon(
-                        Icons.done,
-                        size: 20.0,
+                  GestureDetector(
+                    onTap: ()
+                    {
+                      rate(context,doc_id);  //CALL DIALOG
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50.0),
                         color: Colors.white,
                       ),
+                      width: 25,
+                      height: 25,
+                      child: Icon(
+                          Icons.star,
+                          size: 22.0,
+                          color: Colors.deepOrangeAccent,
+                        ),
 
+                    ),
                   ),
                 ],
               ),

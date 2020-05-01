@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class doctors_url extends ChangeNotifier{
 var _api;
 var _flag;
-var _textColorRate = Colors.black54;
-var _bgColorRate =Colors.white;
+var _textColorRate = const Color(0xFFffffff);
+var _bgColorRate = const Color(0xFF0089ff);
 var _textColorHprice = Colors.black54;
 var _bgColorHprice = Colors.white;
 var _textColorLprice =Colors.black54;
@@ -34,6 +34,7 @@ set api(value) {
 set_method(var method)
 {
   _api = method;
+  print('zozo${method}');
   notifyListeners();
 }
 
@@ -53,16 +54,16 @@ set textColorRate(value) {
 
 set_RateColors()
 {
-  _bgColorRate =  Colors.blue;
-  _textColorRate = Colors.white;
+  _bgColorRate =  const Color(0xFF0089ff);
+  _textColorRate = const Color(0xFFffffff);
   print('aaaaaaa');
   notifyListeners();
 }
 
 set_RateDefult()
 {
-  _bgColorRate =  Colors.white;
-  _textColorRate = Colors.black54;
+  _bgColorRate =  const Color(0xFFffffff);
+  _textColorRate = const Color(0xFF000000);
   print('bbbbbbbb');
   notifyListeners();
 }
@@ -83,15 +84,15 @@ set textColorLprice(value) {
 
 set_LpriceColors()
 {
-  _bgColorLprice =  Colors.blue;
-  _textColorLprice = Colors.white;
+  _bgColorLprice =  const Color(0xFF0089ff);
+  _textColorLprice = const Color(0xFFffffff);
   notifyListeners();
 }
 
 set_LpriceDefult()
 {
-  _bgColorLprice =  Colors.white;
-  _textColorLprice = Colors.black54;
+  _bgColorLprice =  const Color(0xFFffffff);;
+  _textColorLprice = const Color(0xFF000000);
   notifyListeners();
 }
 
@@ -113,17 +114,16 @@ set textColorHprice(value) {
 
 set_HpriceColors()
 {
-  _bgColorHprice =  Colors.blue;
-  _textColorHprice = Colors.white;
+  _bgColorHprice =  const Color(0xFF0089ff);
+  _textColorHprice = const Color(0xFFffffff);
   notifyListeners();
 }
 
 set_HpriceDefult()
 {
-  _bgColorHprice =  Colors.white;
-  _textColorHprice = Colors.black54;
+  _bgColorHprice =  const Color(0xFFffffff);
+  _textColorHprice = const Color(0xFF000000);
   notifyListeners();
 }
-
 
 }

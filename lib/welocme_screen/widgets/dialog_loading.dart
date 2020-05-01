@@ -1,4 +1,5 @@
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/model/doctor_list_provider.dart';
+import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/ui/doctor_list.dart';
 import 'package:dr_booking_flu/doctors_pages/Scenario_doctor_list/widget/filter.dart';
 import 'package:dr_booking_flu/network_layer/Api_Call.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,8 @@ import 'package:loading/loading.dart';
 import 'package:provider/provider.dart';
 
 class dialog_loading {
-  loading(BuildContext context, String item_id, String user_id, int flag) {
+  loading(BuildContext context, String item_id, String user_id, int flag,var search_txt,var falg_num) {
+
     final doctor_list_provider doctors_list_fav = Provider.of<doctor_list_provider>(context);
 
     showDialog(
@@ -41,19 +43,17 @@ class dialog_loading {
             ),
           );
         });
-    onResponse(user_id, item_id,flag, context,doctors_list_fav); //GET DATA FROM SERVER
+    onResponse(user_id, item_id,flag, context,doctors_list_fav,search_txt,falg_num); //GET DATA FROM SERVER
   }
 
   //CALL SERVER
-  onResponse(String user_id, String item_id,int flag, BuildContext context,doctor_list_provider doctors_list_fav) {
+  onResponse(String user_id, String item_id,int flag, BuildContext context,doctor_list_provider doctors_list_fav,var search_txt,var flag_num) {
 
     List <int> list= List<int>();
-    list.add(1);
     if(flag == 0)  //IF FLAG EQUAL ZERO THAT MEAN FAV IS BLACK AND WE WILL CALL ADD TO FAV
       {
         Api_Call().add_to_fav(user_id, item_id).then((onValue) {
           if (onValue['status'] == 1) {
-            doctors_list_fav.setList(list);
             Navigator.pop(context); //CANCEL DIALOG
 
           }
@@ -63,7 +63,7 @@ class dialog_loading {
       Api_Call().delete_fav(user_id, item_id).then((onValue) {
         if (onValue['status'] == 1) {
           Navigator.pop(context); //CANCEL DIALOG
-          doctors_list_fav.setList(list);
+
         }
       });
     }

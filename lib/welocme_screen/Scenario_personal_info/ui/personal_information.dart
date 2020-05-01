@@ -1,3 +1,4 @@
+import 'package:dr_booking_flu/check_internet_connection/check_connection_listner.dart';
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bg_container.dart';
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/bottom_card.dart';
 import 'package:dr_booking_flu/welocme_screen/Scenario_personal_info/widget/top_card.dart';
@@ -8,6 +9,9 @@ import 'package:flutter/material.dart';
 class personal_information extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    check_connection_listner(context); //CONNECTION LISTNER
+
     // TODO: implement build
     return Scaffold(
       body: Stack(

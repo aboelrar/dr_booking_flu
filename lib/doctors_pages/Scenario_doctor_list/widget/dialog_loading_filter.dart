@@ -7,7 +7,7 @@ import 'package:loading/loading.dart';
 import 'package:provider/provider.dart';
 
 class dialog_loading_filter {
-  loading(BuildContext context) {
+  loading(BuildContext context,search_txt) {
     final doctors_url doctors_method_api = Provider.of<doctors_url>(context);
 
     showDialog(
@@ -42,13 +42,18 @@ class dialog_loading_filter {
           );
         });
 
-    sleep(context);
+    sleep(context,search_txt);
   }
 
 
-    void sleep(BuildContext context) async {
+    void sleep(BuildContext context,search_txt) async {
       await Future.delayed(Duration(seconds: 1));
       Navigator.pop(context); //CANCEL DIALOG
-
+      Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context)
+          {
+            return doctor_list(search_txt,1);
+          }
+      ));
     }
 }
